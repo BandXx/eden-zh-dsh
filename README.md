@@ -6,6 +6,8 @@
 
 给 [Eden](https://eden.so) 桌面版装的**简体中文汉化**，通过 [DeepSeek Harness](https://github.com/deepseek-ai) 一句话部署到任意一台 Mac。
 
+> Eden 是 **Dan Koe** 做的软件（创作者商业系统：店铺、课程、内容发布、社群、邮件营销）。官网 https://eden.so ，示例工作空间 https://app.eden.so/w/x3136458902-s-workspace/home 。它本身没有中文界面，这个补丁就是补这一块。
+
 Eden 是 Tauri 应用，前端资源压在 108 MB 的主可执行文件里，直接改文件不现实。这个补丁走运行时注入：复制一份 app，用启动器把 `libEdenZh.dylib` 塞进进程，dylib swizzle `-[WKWebView initWithFrame:configuration:]`，给每个 WebView 挂一段 `WKUserScript`，遍历 DOM（含 Shadow DOM）把英文换成中文。
 
 **原版 Eden 全程不改动。**

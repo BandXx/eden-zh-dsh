@@ -2,7 +2,7 @@
   "name": "eden-zh-dsh",
   "version": "1.2.0",
   "private": true,
-  "description": "DeepSeek Harness bundle: one-click deploy the Simplified Chinese localization patch onto a local Eden.app on macOS.",
+  "description": "Eden（Dan Koe 的创作者商业系统）桌面版简体中文汉化 —— DeepSeek Harness bundle，一键部署到任意 Mac。",
   "type": "module",
   "main": "index.js",
   "exports": {
@@ -31,5 +31,9 @@
   },
   "scripts": {
     "regress": "node scripts/regress.cjs"
-  }
+  },
+  "keywords": [
+    "dan-koe",
+    "eden"
+  ]
 }
