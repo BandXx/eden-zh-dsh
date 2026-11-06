@@ -10244,5 +10244,21 @@
  "Short links that open in the app, store links for each piece of content, and tracked links in scheduled posts.": "在应用内打开的短链接、每条内容对应的店铺链接，以及已排期内容里的追踪链接。",
  "DM everyone who comments a word on your post, replies to your story, or messages you. Your numbers show up here once it's on.": "给在你内容下评论关键词、回复你的限时动态或私信你的人自动发私信。开启后，这里会显示数据。",
  "One link for each video, post, or episode. It opens your store on the product that fits the content, and shows which content made each sale.": "每个视频、内容或单集一个链接。它会把观众带到与内容最匹配的产品，并显示每笔订单来自哪条内容。",
- "Short links that open YouTube videos straight in the app instead of a social platform’s built-in browser, so viewers stay logged in and can like, comment, and subscribe. Clicks are counted here, with bots and link previews filtered out.": "短链接会让 YouTube 视频直接在应用内打开，而不是在社交平台的内置浏览器里，观众保持登录状态，可以点赞、评论和订阅。点击量在这里统计，已过滤机器人和链接预览。"
+ "Short links that open YouTube videos straight in the app instead of a social platform’s built-in browser, so viewers stay logged in and can like, comment, and subscribe. Clicks are counted here, with bots and link previews filtered out.": "短链接会让 YouTube 视频直接在应用内打开，而不是在社交平台的内置浏览器里，观众保持登录状态，可以点赞、评论和订阅。点击量在这里统计，已过滤机器人和链接预览。",
+ "Discount codes buyers enter at checkout. One code can work on many products.": "买家在结账时输入即可少付的优惠码。一个码可以用于多个产品。",
+ "Discount codes buyers enter at checkout.": "买家在结账时输入即可少付的优惠码。",
+ "Set the offer, write the page, and publish. A product is a Custom AI, a course, or a digital download.": "设定报价、写好页面并发布。产品可以是定制 AI、课程或数字下载。",
+ "No products yet": "还没有产品",
+ "Make a community, an AI course, a workshop, or coaching. Each one gets its own page and checkout on your store, and its sales show up here.": "做一个社群、一门 AI 课程、一场工作坊或一对一辅导。每个都有自己的页面和结账流程，销售数据会显示在这里。",
+ "Not sure what to sell? Ask the Product Builder": "不知道卖什么？问问产品构建器",
+ "Custom AIs you can sell": "可以出售的定制 AI",
+ "No Custom AIs yet": "还没有定制 AI",
+ "Build a new Custom AI in any workspace and it appears here, ready to sell.": "在任何工作空间新建定制 AI，它就会出现在这里，可以直接出售。",
+ "Open Custom AIs": "打开定制 AI",
+ "Everyone who bought or claimed one of your products.": "所有购买或领取过你产品的人。",
+ "See everyone who buys from you": "看看谁在你这买东西",
+ "Every buyer, what they bought, and a way to reach each one.": "每位买家、买了什么，以及联系他们的方式。",
+ "Every buyer, what they bought, and a way to reach each one. 花 $5 做出你的第一个产品，准备好了就能在 Starter 上线。": "每位买家、买了什么，以及联系他们的方式。花 $5 做出你的第一个产品，准备好了就能在 Starter 上线。",
+ "Not sure what to sell? Ask The Product Builder": "不知道卖什么？问问产品构建器",
+ "Only Custom AIs you built show here. Installed or purchased copies can't be resold.": "这里只显示你自己构建的定制 AI。已安装或购买的副本不能转售。"
 }
