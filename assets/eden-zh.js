@@ -331,7 +331,6 @@
 
   // —— 未翻译内容回收 ——
   var seen = {};
-  var seenRoutes = {};
 
   function post(tag, payload) {
     try { window.webkit.messageHandlers.edenZhI18n.postMessage(tag + ' ' + JSON.stringify(payload)); } catch (e) {}
@@ -358,6 +357,8 @@
       if (cj === t.length) continue;
       if (!/[A-Za-z]{2}/.test(t)) continue;
       if (cj > 0 && !/[A-Za-z][A-Za-z'-]{3,}/.test(t)) continue;
+      // 已经能翻的不算缺失（查表比 ignoreText 便宜，还能让自反条目失效——它们可以删了）
+      if (tr(t) !== null) continue;
       if (/^(https?:|tauri:|data:|\/|@keyframes)/.test(t)) continue;
       if (seen[t]) continue;
       seen[t] = 1; out.push(t);
@@ -370,37 +371,11 @@
         if (!v || v.length < 2 || v.length > 200) continue;
         if (seen[v] || !/[A-Za-z]{2}/.test(v)) continue;
         if (/[\u4e00-\u9fff]/.test(v) && !/[A-Za-z][A-Za-z'-]{3,}/.test(v)) continue;
+        if (tr(v) !== null) continue;
         seen[v] = 1; out.push(v);
       }
     }
     if (out.length) post('MISSING', out);
-  }
-
-  function dumpRoutes() {
-    var found = [];
-    var as = document.querySelectorAll('a[href]');
-    for (var i = 0; i < as.length; i++) {
-      var h = as[i].getAttribute('href') || '';
-      var idx = h.indexOf('#/');
-      if (idx >= 0) found.push(h.slice(idx));
-    }
-    var fresh = [];
-    for (var j = 0; j < found.length; j++) if (!seenRoutes[found[j]]) { seenRoutes[found[j]] = 1; fresh.push(found[j]); }
-    if (fresh.length) post('ROUTES', fresh);
-  }
-
-  // —— 自动遍历（仅采集模式：保留 routes.txt 时启用）——
-  function crawl() {
-    var routes = window.__EDEN_ZH_ROUTES__;
-    if (!routes || !routes.length) return;
-    var i = 0;
-    function step() {
-      if (i >= routes.length) { post('CRAWL', ['done', String(routes.length)]); return; }
-      var r = routes[i++];
-      try { location.hash = r; } catch (e) {}
-      setTimeout(function () { all(); report(); dumpRoutes(); step(); }, 2600);
-    }
-    setTimeout(step, 4000);
   }
 
   function start() {
@@ -408,62 +383,10 @@
     try { mo.observe(document.documentElement, { subtree: true, childList: true, characterData: true }); } catch (e) {}
     var n = 0;
     var iv = setInterval(function () { n++; all(); if (n > 25) clearInterval(iv); }, 900);
-    setInterval(function () { all(); report(); dumpRoutes(); }, 4000);
+    setInterval(function () { all(); report(); }, 4000);
     post('ACTIVE', [String(Object.keys(exact).length), String(pats.length), String(LONG.length)]);
-    crawl();
   }
 
   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', start);
   else start();
-})();
-
-/* ===== 采集模式 v3：先进入设置，再逐栏点击，让 report() 写入 missing.log ===== */
-(function () {
-  if (!window.__EDEN_ZH_CRAWL__) return;
-  var SET = ['个人资料','偏好设置','画中画','快捷键','推荐奖励','通话时长','工作空间','成员','标签','模板',
-             '导入','同步来源','用量','存储','账单','个性化','例程','Eve','技能','MCP','连接器','API'];
-  function byText(list, txt) {
-    for (var i = 0; i < list.length; i++) {
-      var el = list[i], t = (el.textContent || '').trim();
-      if (t === txt && el.getBoundingClientRect().width > 0) return el;
-    }
-    return null;
-  }
-  function inSettings() {
-    var els = document.querySelectorAll('*');
-    for (var i = 0; i < els.length; i++) {
-      var t = (els[i].textContent || '').trim();
-      if (t === '搜索设置' || t === 'Search settings') return true;
-    }
-    return false;
-  }
-  function openSettings() {
-    var btns = document.querySelectorAll('button,[role="button"]');
-    var best = null;
-    for (var i = 0; i < btns.length; i++) {
-      var r = btns[i].getBoundingClientRect();
-      if (r.width === 0) continue;
-      if (r.top < 90 && r.left > window.innerWidth * 0.55 && !(btns[i].textContent || '').trim()) {
-        best = btns[i];
-      }
-    }
-    if (best) { best.click(); return true; }
-    return false;
-  }
-  var step = 0, idle = 0;
-  var timer = setInterval(function () {
-    if (step === 0) {
-      if (!inSettings()) { openSettings(); idle++; if (idle > 8) { clearInterval(timer); } return; }
-      step = 1; idle = 0;
-    }
-    var els = document.querySelectorAll('button,a,[role="button"],li,div,span');
-    var target = byText(els, SET[step - 1]);
-    var k = 0;
-    while (!target && k < SET.length) { step++; if (step - 1 >= SET.length) { clearInterval(timer); return; } target = byText(els, SET[step - 1]); k++; }
-    if (!target) { if (++idle > 6) clearInterval(timer); return; }
-    idle = 0;
-    try { target.click(); } catch (e) {}
-    step++;
-    if (step - 1 >= SET.length) clearInterval(timer);
-  }, 2600);
 })();
