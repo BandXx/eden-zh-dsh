@@ -12,10 +12,9 @@ Eden 是 Tauri 应用，前端资源压在 108 MB 的主可执行文件里，直
 
 ## 效果
 
-![优惠券页](docs/screenshots/01-coupons.png)
+![主页](docs/screenshots/01-home.webp)
 
-店铺 → 优惠券。侧栏、标题、描述、右侧示例卡片全部中文；`$59`、`$99`、`Black Friday` 这类价格与活动名按原样保留。
-
+主页。侧栏、引导卡、「最近」空状态全是中文；右侧示例卡片里的示例内容（Dan Koe / Revenue / Recent sales）保持原样，不翻译用户看不到的演示数据。
 
 ## 装插件
 
