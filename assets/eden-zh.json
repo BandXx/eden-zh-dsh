@@ -1551,7 +1551,7 @@
  "Comments": "评论",
  "Comments, sharing, and version history stay with the original, and old links to it stop working.": "评论、共享和版本记录留在原件上，旧链接会失效。",
  "Communities": "社群",
- "Community": "社区",
+ "Community": "社群",
  "Community Plan": "社区方案",
  "Community · ${e}": "社区 · {0}",
  "Compacted conversation": "已压缩对话",
@@ -8696,7 +8696,7 @@
  "logo failed to load: ${e}": "logo 加载失败：{0}",
  "macOS will ask once whether Eden may read Notes. Locked notes are never read.": "macOS 会询问一次是否允许 Eden 读取备忘录。锁定的备忘录永不被读取。",
  "member": "成员",
- "members": "成员",
+ "members": "名成员",
  "membership": "会员",
  "memberships": "会员资格",
  "min": "分钟",
@@ -8931,7 +8931,7 @@
  "Press": "按下",
  "Read": "阅读",
  "Reload": "重新载入",
- "${e} members": "{0} 位成员",
+ "${e} members": "{0} 名成员",
  "Downgrade": "降级",
  "Rename": "重命名",
  "Find": "查找",
@@ -10331,5 +10331,8 @@
  "30 min · Approved only": "30 分钟 · 仅限已批准",
  "A paid 1:1 call.": "付费一对一通话。",
  "They pick a time, pay, and they're booked.": "对方选时间、付款，然后完成预约。",
- "这个工作空间的产品、买家与收益。": "这个工作空间的产品、买家与收益。"
+ "这个工作空间的产品、买家与收益。": "这个工作空间的产品、买家与收益。",
+ "Everything you bought or joined on Eden, in every workspace.": "你在 Eden 上购买或加入的所有内容，涵盖每个工作空间。",
+ "Products and communities": "产品与社群",
+ "Community · ${e} members": "社群 · {0} 名成员"
 }
