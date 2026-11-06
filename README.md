@@ -75,7 +75,7 @@ bash assets/deploy.sh --app /path/to/Eden.app
 
 `assets/eden-zh.js` 是纯 DOM 层的工作，不碰 Eden 的包内资源：
 
-- **精确词典**：`{"English": "中文"}`，约 9960 条
+- **精确词典**：`{"English": "中文"}`，约 10336 条
 - **模板匹配**：源串里的 `${e}` 编译成正则，译文用 `{0}` `{1}` 回填
 - **防混排**：句子（>3 词）只接受整句命中，半截译文（「获取 your first digital product…」）直接丢弃。
   判定靠 `residue()`——译文里若残留非白名单英文整词就判不合格。白名单是 Eden/Eve/Claude/MCP/API/PDF 这类专名。
@@ -108,7 +108,7 @@ eden-zh-dsh/
 ├── icon.svg  locale/     插件元数据
 ├── assets/
 │   ├── deploy.sh         安装/卸载/状态
-│   ├── eden-zh.json      9960 条词条
+│   ├── eden-zh.json      10336 条词条
 │   ├── eden-zh.js        DOM 替换引擎
 │   ├── edenzh_inject.m   注入器源码
 │   └── libEdenZh.dylib   预编译注入器（arm64）
@@ -118,3 +118,13 @@ eden-zh-dsh/
 ## 许可
 
 MIT。注入器与替换引擎为本仓库原创；Eden 本身的版权归其作者。
+
+## 更新记录
+
+- **v1.1.0（当前）** — 词典 10336 条
+  - 补全店铺全部子页面：主页 / 店铺前台 / 产品 / 优惠券 / 促销 / 客户 / 订阅者 / 收件箱 / 邮箱 / 自动私信 / 营销 / 日历
+  - 补全社群、探索、你的访问权限页
+  - 修复 `$` 占位符被误当变量：`$30`、`$199` 不再被替换成 `${3}0`
+  - 修复三元占位符（`${e===1?\`minute\`:\`minutes\`}`）导致的单复数文案漏译
+  - 引擎新增三层闸门：文本形态（邮箱/URL/标识符/人名）、容器级（contenteditable/translate="no"）、译文残留检测
+  - 回归 16/16 通过，实机日志 `missing 0`
