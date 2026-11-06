@@ -10224,5 +10224,6 @@
  "They pick a time, pay, and they're booked.": "对方选时间、付款，然后完成预约。",
  "Everything you bought or joined on Eden, in every workspace.": "你在 Eden 上购买或加入的所有内容，涵盖每个工作空间。",
  "Products and communities": "产品与社群",
- "Community · ${e} members": "社群 · {0} 名成员"
+ "Community · ${e} members": "社群 · {0} 名成员",
+ "${e} of ${e}": "{0} / {1}"
 }
