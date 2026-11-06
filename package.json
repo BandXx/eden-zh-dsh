@@ -1,6 +1,6 @@
 {
   "name": "eden-zh-dsh",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "private": true,
   "description": "DeepSeek Harness bundle: one-click deploy the Simplified Chinese localization patch onto a local Eden.app on macOS.",
   "type": "module",
