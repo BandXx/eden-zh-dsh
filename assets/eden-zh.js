@@ -75,7 +75,7 @@
     var words = t.split(' ');
     // 标签判定：<=3 词且不含功能词；像 "Search any topic"/"Open settings" 这种祈使句+宾语不当标签
     var FUNC = /(^|\s)(any|the|a|an|to|of|in|on|at|for|from|with|your|our|their|this|that|these|those|some|every|each|all|and|or|but|is|are|was|were|be|will|can|should|would|could)(\s|$)/i;
-    var isLabel = words.length <= 3 && !FUNC.test(t);
+    var isLabel = (words.length <= 3 && !FUNC.test(t)) || /[?:—…]$/.test(t) || /^[A-Z][a-z]+(-[a-z]+)?\s/.test(t);
     for (var i = 0; i < pats.length; i++) {
       var m = t.match(pats[i].re);
       if (!m) continue;
@@ -221,8 +221,10 @@
       var t = (node.nodeValue || '').replace(/\s+/g, ' ').trim();
       if (t.length < 2 || t.length > 260) continue;
       var cj = (t.match(/[\u4e00-\u9fff]/g) || []).length;
-      if (cj > t.length * 0.4) continue;          // 纯中文跳过；中英混排仍上报
+      // 纯中文跳过；但含英文整词的混排要上报（例如「获取 your first product…」）
+      if (cj === t.length) continue;
       if (!/[A-Za-z]{2}/.test(t)) continue;
+      if (cj > 0 && !/[A-Za-z][A-Za-z'-]{3,}/.test(t)) continue;
       if (/^(https?:|tauri:|data:|\/|@keyframes)/.test(t)) continue;
       if (seen[t]) continue;
       seen[t] = 1; out.push(t);
@@ -233,7 +235,8 @@
       for (var a = 0; a < ATTRS.length; a++) {
         var v = fields[i].getAttribute && fields[i].getAttribute(ATTRS[a]);
         if (!v || v.length < 2 || v.length > 200) continue;
-        if (seen[v] || /[\u4e00-\u9fff]/.test(v) || !/[A-Za-z]{2}/.test(v)) continue;
+        if (seen[v] || !/[A-Za-z]{2}/.test(v)) continue;
+        if (/[\u4e00-\u9fff]/.test(v) && !/[A-Za-z][A-Za-z'-]{3,}/.test(v)) continue;
         seen[v] = 1; out.push(v);
       }
     }
