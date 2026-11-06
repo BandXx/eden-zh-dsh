@@ -1,0 +1,7 @@
+# Bundle layer: DSH loads this when eden-zh-dsh is enabled.
+# Provides three tools: eden_zh_status / eden_zh_deploy / eden_zh_uninstall.
+- insert:
+    - id: eden-zh-dsh
+      name: eden-zh-dsh
+      config:
+        enabled: true
